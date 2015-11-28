@@ -8,5 +8,10 @@ namespace GitSyncAutoProject.CORE.ServiceClasses.BasicWebProject
 {
     public class BWPFileService
     {
+
+
+        
+
+
     }
 }

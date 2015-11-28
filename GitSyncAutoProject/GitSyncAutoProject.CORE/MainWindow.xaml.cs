@@ -37,6 +37,10 @@ namespace GitSyncAutoProject.CORE
         //Path to newly created 'Project Name' Folder
         public static string ProjectTopLevelFolder;
 
+        //Paths to Web Project JS CSS IMG
+        public static string Project_js_DirectoryPath;
+        public static string Project_css_DirectoryPath;
+        public static string Project_img_DirectoryPath;
 
         //Web Project inner contents of file - script string
         public static string JsFileTextString;
@@ -260,21 +264,25 @@ namespace GitSyncAutoProject.CORE
         private void button_CreateProject_Click(object sender, RoutedEventArgs e)
         {
             //Validation
-            validateBuild();
+            if(!validateBuild())
+            {
+                MessageBox.Show("Please Fill in all location and selection a directory locaiton");
+                return;
+            }
         }
 
         //Validation Method for Build
         private bool validateBuild()
         {
+          
             var RepoName = textBox_RepoName.Text;
             var RepoDescription = textBox_RepoDescription.Text;
             var LocalDirectoryLocation = label_localSelectedPath.Content;
             var localDirecoryName = textBox_LocalDirectoryName.Text;
 
             //Validates that there is NEW content in RepoName, RepoDescription, LocalDirectoryLocation, LocalDirectoryName 
-            if(((localDirecoryName == "Enter File Name") ||(localDirecoryName == "")) || ((RepoName == "My Repo Name") || ( RepoName == "")) ||((RepoDescription == "Description....") ||( RepoDescription == "")) || (localDirecoryName == ""))
-                {
-                MessageBox.Show("Please Fill in all location and selection a directory locaiton");
+            if (((localDirecoryName == "Enter File Name") || (localDirecoryName == "")) || ((RepoName == "My Repo Name") || (RepoName == "")) || ((RepoDescription == "Description....") || (RepoDescription == "")) || (localDirecoryName == ""))
+            {
                 return false;
             }
 
@@ -283,30 +291,145 @@ namespace GitSyncAutoProject.CORE
                 return false;
             }
             return true;
-        } 
-
+        }
         //Validate Radio Buttons
         private bool validateRadioBtns()
         {
             var WebProject = radioButton_BasicWebProject.IsChecked;
             var AngularProject = radioButton_AngularWebProject.IsChecked;
 
-            if((WebProject == false && AngularProject == false) || WebProject == true && AngularProject == true )
+            if ((WebProject == false && AngularProject == false) || WebProject == true && AngularProject == true)
             {
-                MessageBox.Show("Please select a Project Type.");
                 return false;
             }
             return true;
         }
 
+
+
         //Current Development:
         //Test 'Click'method for creating directories
         private void button_testCreateDirectory_Click(object sender, RoutedEventArgs e)
         {
-            BWPDirectoryService.CreateTopLevelDirectory();
-            BWPDirectoryService.CreateBasicWebProjectDirectories();
+            CreateTopLevelDirectory();
+            CreateBasicWebProjectDirectories();
+            CreateFilesForBasicWebProject();
         }
 
-  
+
+        //Create 'Top-Level' Directory with Project Name for the fold name
+        private void CreateTopLevelDirectory()
+        {
+            //Validation
+            if (label_localSelectedPath.Content == "")
+            {
+                MessageBox.Show("Please select a location");
+                return;
+            }
+
+            //Save Directory Name
+            var DirectoryName = textBox_LocalDirectoryName.Text;
+
+            //Save Directory Location
+            var directoryLocation = (string)label_localSelectedPath.Content;
+
+            //Path to new folder
+            ProjectTopLevelFolder = System.IO.Path.Combine(directoryLocation, DirectoryName);
+
+            //Create new Project Folder with Project Name
+            System.IO.Directory.CreateDirectory(ProjectTopLevelFolder);
+        }
+
+        //Creates Directories for 'Basic Web Project'
+        private void CreateBasicWebProjectDirectories()
+        {
+            //Path to 'Top-Level' Directory
+            var pathtoProjectDirecory = ProjectTopLevelFolder;
+
+            //
+            //---Img  Folder Creation---
+            //Path to img folder
+            string imgFolderName = "img";
+            Project_img_DirectoryPath = System.IO.Path.Combine(pathtoProjectDirecory, imgFolderName);
+            //Create new img folder
+            System.IO.Directory.CreateDirectory(Project_img_DirectoryPath);
+
+
+            //
+            //---CSS  Folder Creation---
+            //Path to css folder
+            string cssFolderName = "css";
+            Project_css_DirectoryPath = System.IO.Path.Combine(pathtoProjectDirecory, cssFolderName);
+            System.IO.Directory.CreateDirectory(Project_css_DirectoryPath);
+
+            //
+            //==JS FOlder Creation
+            //Path to js folder
+            string jsFolderName = "js";
+            Project_js_DirectoryPath = System.IO.Path.Combine(pathtoProjectDirecory, jsFolderName);
+            System.IO.Directory.CreateDirectory(Project_js_DirectoryPath);
+
+        }
+
+        //Creates Files for 'Basic Web Project'
+        private void CreateFilesForBasicWebProject()
+        {
+            //Create index.html file
+            CreateFileWithContent(ProjectTopLevelFolder, "Auto-Generated Text", "index", "html");
+
+            //Create main.css file
+            CreateFileWithContent(Project_css_DirectoryPath, "/*Generated by GitSyncAutoProject*/", "main", "css");
+
+            //Create script.js file
+            CreateFileWithContent(Project_js_DirectoryPath, "//Generated by GitSyncAutoProject", "script", "js");
+
+        }
+
+        //File Builder Method
+        private void CreateFileWithContent(string path, string text, string Filename, string fileType)
+        {
+            path = path + "/" + Filename + "." + fileType;
+            try
+            {
+
+                // Delete the file if it exists.
+                if (File.Exists(path))
+                {
+                    // Note that no lock is put on the
+                    // file and the possibility exists
+                    // that another process could do
+                    // something with it between
+                    // the calls to Exists and Delete.
+                    File.Delete(path);
+                }
+
+                // Create the file.
+                using (FileStream fs = File.Create(path))
+                {
+                    Byte[] info = new UTF8Encoding(true).GetBytes(text);
+                    // Add some information to the file.
+                    fs.Write(info, 0, info.Length);
+                }
+
+                // Open the stream and read it back.
+                using (StreamReader sr = File.OpenText(path))
+                {
+                    string s = "";
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(s);
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+
+
     }
 }
