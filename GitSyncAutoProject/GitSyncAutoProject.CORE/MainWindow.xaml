@@ -8,7 +8,7 @@
         Title="MainWindow" Height="400" Width="650">
     <Grid>
         <Label x:Name="label" Content="Github Connection Status:" HorizontalAlignment="Left" Height="36" Margin="10,10,0,0" VerticalAlignment="Top" Width="148"/>
-        <TextBox x:Name="textBox_username" HorizontalAlignment="Right" Height="23" Margin="0,46,512,0" TextWrapping="Wrap" GotKeyboardFocus="textBox_username_GotKeyboardFocus" GotFocus="TextBox_GotFocus" Text="Github Username" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="textBox_username" HorizontalAlignment="Left" Height="23" Margin="9,46,0,0" TextWrapping="Wrap" GotKeyboardFocus="textBox_username_GotKeyboardFocus" GotFocus="TextBox_GotFocus" Text="Github Username" VerticalAlignment="Top" Width="120" />
         <Button x:Name="button_connect" Content="Connect" HorizontalAlignment="Left" Margin="130,46,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="button_Click"/>
         <Label x:Name="label_ConnectedStatus" Content="" HorizontalAlignment="Left" Margin="158,10,0,0" VerticalAlignment="Top" Width="128" Foreground="#FF058717" FontWeight="Bold" FontSize="13.333"/>
         <Button x:Name="button_disconnect" Content="Disconnect&#xD;&#xA;" HorizontalAlignment="Left" Margin="205,46,0,0" VerticalAlignment="Top" Width="81

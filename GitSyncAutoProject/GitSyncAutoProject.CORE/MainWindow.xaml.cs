@@ -27,9 +27,26 @@ namespace GitSyncAutoProject.CORE
     /// </summary>
     public partial class MainWindow : Window
     {
+        //
+        //-- Properties --  |(mainly saved for caching purposes)
+
         public static UserInformation userInfo;
+        //Save path to local directory orginal Root folder
         public static string LocalDirctoryPath;
+
+        //Path to newly created 'Project Name' Folder
         public static string ProjectTopLevelFolder;
+
+
+        //Web Project inner contents of file - script string
+        public static string JsFileTextString;
+        public static string CssFileTextString;
+        public static string HTMLFileTextString;
+
+
+
+
+
 
         //Run Application
         public MainWindow()
@@ -143,8 +160,10 @@ namespace GitSyncAutoProject.CORE
             L_following.Visibility = Visibility.Hidden;
             L_locatoon.Visibility = Visibility.Hidden;
             button_newProject.IsEnabled = false;
+            button_CreateProject.Visibility = Visibility.Hidden;
             HideProjectLabels();
         }
+        //Hides project labels on 'Hide Project Options' Click
         public void HideProjectLabels()
         {
             L_Step1.Visibility = Visibility.Hidden;
@@ -164,9 +183,12 @@ namespace GitSyncAutoProject.CORE
             button_newProject.Visibility = Visibility.Visible;
             button_hideProject.Visibility = Visibility.Hidden;
             button_setLocalDirectory.Visibility = Visibility.Hidden;
+            button_CreateProject.Visibility = Visibility.Hidden;
+
         }
 
-    public void ShowProjectLabels()
+        //Shows all nessesary prject labels and input area on 'New Project' Click.
+        public void ShowProjectLabels()
         {
             L_Step1.Visibility = Visibility.Visible;
             L_Step2.Visibility = Visibility.Visible;
@@ -185,6 +207,8 @@ namespace GitSyncAutoProject.CORE
             button_newProject.Visibility = Visibility.Hidden;
             button_hideProject.Visibility = Visibility.Visible;
             button_setLocalDirectory.Visibility = Visibility.Visible;
+            button_CreateProject.Visibility = Visibility.Visible;
+
 
         }
 
@@ -216,7 +240,7 @@ namespace GitSyncAutoProject.CORE
             ShowProjectLabels();
         }
 
-        //Hides Project div on clock
+        //Hides Project div on click
         private void button_hideProject_Click(object sender, RoutedEventArgs e)
         {
             HideProjectLabels();
@@ -275,40 +299,14 @@ namespace GitSyncAutoProject.CORE
             return true;
         }
 
+        //Current Development:
         //Test 'Click'method for creating directories
         private void button_testCreateDirectory_Click(object sender, RoutedEventArgs e)
         {
-            CreateTopLevelDirectory();
+            BWPDirectoryService.CreateTopLevelDirectory();
+            BWPDirectoryService.CreateBasicWebProjectDirectories();
         }
 
-    
-        //Create 'Top-Level' Directory with Project Name for the fold name
-        private void CreateTopLevelDirectory()
-        {
-            //Validation
-            if (label_localSelectedPath.Content == "")
-            {
-                MessageBox.Show("Please select a location");
-                return;
-            }
-
-            //Save Directory Name
-            var DirectoryName = textBox_LocalDirectoryName.Text;
-
-            //Save Directory Location
-            var directoryLocation = (string)label_localSelectedPath.Content;
-
-            //Path to new folder
-            ProjectTopLevelFolder = System.IO.Path.Combine(directoryLocation, DirectoryName);
-
-            //Create new Project Folder with Project Name
-            System.IO.Directory.CreateDirectory(ProjectTopLevelFolder);
-        }
-
-        private void CreateBasicWebProject()
-        {
-
-        }
-        
+  
     }
 }
