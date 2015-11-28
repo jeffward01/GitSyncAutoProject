@@ -158,6 +158,7 @@ namespace GitSyncAutoProject.CORE
             L_RepoDescription.Visibility = Visibility.Hidden;
             button_newProject.Visibility = Visibility.Visible;
             button_hideProject.Visibility = Visibility.Hidden;
+            button_setLocalDirectory.Visibility = Visibility.Hidden;
         }
 
     public void ShowProjectLabels()
@@ -178,6 +179,8 @@ namespace GitSyncAutoProject.CORE
             L_RepoName.Visibility = Visibility.Visible;
             button_newProject.Visibility = Visibility.Hidden;
             button_hideProject.Visibility = Visibility.Visible;
+            button_setLocalDirectory.Visibility = Visibility.Visible;
+
         }
 
         //Disconnect Button
@@ -209,6 +212,14 @@ namespace GitSyncAutoProject.CORE
         private void button_hideProject_Click(object sender, RoutedEventArgs e)
         {
             HideProjectLabels();
+        }
+
+        private void button_setLocalDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+            label_localSelectedPath.Visibility = Visibility.Visible;
+            label_localSelectedPath.Content = dialog.SelectedPath;
         }
     }
 }

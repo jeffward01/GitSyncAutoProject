@@ -27,19 +27,21 @@
         <Label x:Name="L_RepoName" Content="Repository Name:" HorizontalAlignment="Left" Height="30" Margin="40,173,0,0" VerticalAlignment="Top" Width="109"/>
         <TextBox x:Name="textBox_RepoName" GotKeyboardFocus="textBox_username_GotKeyboardFocus" GotFocus="TextBox_GotFocus"  HorizontalAlignment="Left" Height="23" Margin="152,176,0,0" TextWrapping="Wrap" Text="My Repo Name" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.072,-4.879"/>
         <Label x:Name="L_RepoDescription" Content="Repository Description:" HorizontalAlignment="Left" Height="30" Margin="38,200,0,0" VerticalAlignment="Top" Width="134"/>
-        <TextBox x:Name="textBox_RepoDescription" HorizontalAlignment="Left" Height="23" Margin="178,204,0,0" TextWrapping="Wrap" Text="Description...." VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.072,-4.879"/>
+        <TextBox x:Name="textBox_RepoDescription" GotKeyboardFocus="textBox_username_GotKeyboardFocus" GotFocus="TextBox_GotFocus" HorizontalAlignment="Left" Height="23" Margin="178,204,0,0" TextWrapping="Wrap" Text="Description...." VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.072,-4.879"/>
         <Label x:Name="L_RepoLocation" Content="Select Local Directory Location:" HorizontalAlignment="Left" Height="30" Margin="41,232,0,0" VerticalAlignment="Top" Width="183"/>
         <Label x:Name="L_LocalDirectioryName" Content="Local Directoy Name:" HorizontalAlignment="Left" Height="30" Margin="32,260,0,0" VerticalAlignment="Top" Width="129"/>
         <TextBox x:Name="textBox_LocalDirectoryName" GotKeyboardFocus="textBox_username_GotKeyboardFocus" GotFocus="TextBox_GotFocus"  HorizontalAlignment="Left" Height="23" Margin="168,264,0,0" TextWrapping="Wrap" Text="Enter File Name" VerticalAlignment="Top" Width="130" RenderTransformOrigin="0.072,-4.879"/>
-        <Label x:Name="L_projectType" Content="Project Type" HorizontalAlignment="Left" Height="26" Margin="518,173,0,0" VerticalAlignment="Top" Width="85" FontWeight="Bold"/>
+        <Label x:Name="L_projectType" Content="Project Type" HorizontalAlignment="Left" Height="26" Margin="518,164,0,0" VerticalAlignment="Top" Width="85" FontWeight="Bold"/>
         <Label x:Name="L_Step1" Content="1.)" HorizontalAlignment="Left" Height="27" Margin="15,173,0,0" VerticalAlignment="Top" Width="23"/>
         <Label x:Name="L_Step2" Content="2.)" HorizontalAlignment="Left" Height="27" Margin="15,200,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.083,1.393"/>
         <Label x:Name="L_Step3" Content="3.)" HorizontalAlignment="Left" Height="27" Margin="15,230,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.083,1.393"/>
         <Label x:Name="L_Step4" Content="4.)" HorizontalAlignment="Left" Height="27" Margin="13,262,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.083,1.393"/>
-      
-            <RadioButton x:Name="radioButton_BasicWebProject" Content="Basic Web Project" HorizontalAlignment="Left" Margin="496,204,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="radioButton_AngularWebProject" Content="Angular Web Project" HorizontalAlignment="Left" Margin="496,224,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,2.302"/>
+
+        <RadioButton x:Name="radioButton_BasicWebProject" Content="Basic Web Project" HorizontalAlignment="Left" Margin="496,195,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButton_AngularWebProject" Content="Angular Web Project" HorizontalAlignment="Left" Margin="496,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,2.302"/>
         <Button x:Name="button_hideProject" Content="Hide Project Options" HorizontalAlignment="Left" Margin="15,111,0,0" VerticalAlignment="Top" Width="122" Height="26" Click="button_hideProject_Click"/>
+        <Button x:Name="button_setLocalDirectory" Content="Find Folder" HorizontalAlignment="Left" Height="24" Margin="219,235,0,0" VerticalAlignment="Top" Width="79" Click="button_setLocalDirectory_Click"/>
+        <Label x:Name="label_localSelectedPath" Content="" HorizontalAlignment="Left" Margin="303,232,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.006,-0.217" Width="321"/>
 
     </Grid>
 </Window>
