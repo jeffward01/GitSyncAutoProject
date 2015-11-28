@@ -35,6 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CSharp.GitHub, Version=0.1.4500.22863, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSharp.GitHub.0.1.4500.22863\lib\net40\CSharp.GitHub.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GitSharp, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.dll</HintPath>
       <Private>True</Private>
@@ -53,6 +61,14 @@
     </Reference>
     <Reference Include="Octokit, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Octokit.0.16.0\lib\net45\Octokit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spring.Rest, Version=1.1.0.5340, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spring.Rest.1.1.0\lib\net40\Spring.Rest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spring.Social.Core, Version=1.0.0.5340, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spring.Social.Core.1.0.0\lib\net40\Spring.Social.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -88,7 +104,9 @@
     <Compile Include="Classes\CommitInformation.cs" />
     <Compile Include="Classes\GithubClasses.cs" />
     <Compile Include="Classes\RepositoryInformation.cs" />
+    <Compile Include="ServiceClasses\DirectoryService.cs" />
     <Compile Include="ServiceClasses\GithubService.cs" />
+    <Compile Include="ServiceClasses\GithubServiceProvider.cs" />
     <Compile Include="ToolBox\JeffToolBox.cs" />
     <Compile Include="Classes\UserInformation.cs" />
     <Page Include="MainWindow.xaml">
@@ -132,7 +150,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="App_Readme\Spring.Rest.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="App_Readme\Spring.Social.Core.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

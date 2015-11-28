@@ -16,6 +16,9 @@ using GitSharp;
 using GitSharp.Core;
 using GitSyncAutoProject.CORE;
 using GitSyncAutoProject.CORE.ServiceClasses;
+using CSharp.GitHub;
+using System.IO;
+
 
 namespace GitSyncAutoProject.CORE
 {
@@ -25,7 +28,8 @@ namespace GitSyncAutoProject.CORE
     public partial class MainWindow : Window
     {
         public static UserInformation userInfo;
-
+        public static string LocalDirctoryPath;
+        public static string ProjectTopLevelFolder;
 
         //Run Application
         public MainWindow()
@@ -81,6 +85,7 @@ namespace GitSyncAutoProject.CORE
             {
                 setConnectionStatusOK();
                 PopulateUserInfo();
+
             }
             else
             {
@@ -198,28 +203,112 @@ namespace GitSyncAutoProject.CORE
             textBox_username.Text = "Github Username";
         }
 
+        //Textbox:Control
         private void textBox_username_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
         }
 
+        //Shows newProject Textboxes
         private void button_newProject_Click(object sender, RoutedEventArgs e)
         {
             ShowProjectLabels();
         }
 
+        //Hides Project div on clock
         private void button_hideProject_Click(object sender, RoutedEventArgs e)
         {
             HideProjectLabels();
         }
 
+        //Set local directory button
         private void button_setLocalDirectory_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
             label_localSelectedPath.Visibility = Visibility.Visible;
+            LocalDirctoryPath = dialog.SelectedPath;
             label_localSelectedPath.Content = dialog.SelectedPath;
         }
+
+        //Build new Project
+        private void button_CreateProject_Click(object sender, RoutedEventArgs e)
+        {
+            //Validation
+            validateBuild();
+        }
+
+        //Validation Method for Build
+        private bool validateBuild()
+        {
+            var RepoName = textBox_RepoName.Text;
+            var RepoDescription = textBox_RepoDescription.Text;
+            var LocalDirectoryLocation = label_localSelectedPath.Content;
+            var localDirecoryName = textBox_LocalDirectoryName.Text;
+
+            //Validates that there is NEW content in RepoName, RepoDescription, LocalDirectoryLocation, LocalDirectoryName 
+            if(((localDirecoryName == "Enter File Name") ||(localDirecoryName == "")) || ((RepoName == "My Repo Name") || ( RepoName == "")) ||((RepoDescription == "Description....") ||( RepoDescription == "")) || (localDirecoryName == ""))
+                {
+                MessageBox.Show("Please Fill in all location and selection a directory locaiton");
+                return false;
+            }
+
+            if (validateRadioBtns() == false)
+            {
+                return false;
+            }
+            return true;
+        } 
+
+        //Validate Radio Buttons
+        private bool validateRadioBtns()
+        {
+            var WebProject = radioButton_BasicWebProject.IsChecked;
+            var AngularProject = radioButton_AngularWebProject.IsChecked;
+
+            if((WebProject == false && AngularProject == false) || WebProject == true && AngularProject == true )
+            {
+                MessageBox.Show("Please select a Project Type.");
+                return false;
+            }
+            return true;
+        }
+
+        //Test 'Click'method for creating directories
+        private void button_testCreateDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            CreateTopLevelDirectory();
+        }
+
+    
+        //Create 'Top-Level' Directory with Project Name for the fold name
+        private void CreateTopLevelDirectory()
+        {
+            //Validation
+            if (label_localSelectedPath.Content == "")
+            {
+                MessageBox.Show("Please select a location");
+                return;
+            }
+
+            //Save Directory Name
+            var DirectoryName = textBox_LocalDirectoryName.Text;
+
+            //Save Directory Location
+            var directoryLocation = (string)label_localSelectedPath.Content;
+
+            //Path to new folder
+            ProjectTopLevelFolder = System.IO.Path.Combine(directoryLocation, DirectoryName);
+
+            //Create new Project Folder with Project Name
+            System.IO.Directory.CreateDirectory(ProjectTopLevelFolder);
+        }
+
+        private void CreateBasicWebProject()
+        {
+
+        }
+        
     }
 }

@@ -37,11 +37,14 @@
         <Label x:Name="L_Step3" Content="3.)" HorizontalAlignment="Left" Height="27" Margin="15,230,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.083,1.393"/>
         <Label x:Name="L_Step4" Content="4.)" HorizontalAlignment="Left" Height="27" Margin="13,262,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.083,1.393"/>
 
-        <RadioButton x:Name="radioButton_BasicWebProject" Content="Basic Web Project" HorizontalAlignment="Left" Margin="496,195,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="radioButton_AngularWebProject" Content="Angular Web Project" HorizontalAlignment="Left" Margin="496,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,2.302"/>
+        <RadioButton x:Name="radioButton_BasicWebProject" Content="Basic Web Project" HorizontalAlignment="Left" Margin="496,195,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <RadioButton x:Name="radioButton_AngularWebProject" Content="Angular Web Project" HorizontalAlignment="Left" Margin="496,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,2.302" IsChecked="True"/>
         <Button x:Name="button_hideProject" Content="Hide Project Options" HorizontalAlignment="Left" Margin="15,111,0,0" VerticalAlignment="Top" Width="122" Height="26" Click="button_hideProject_Click"/>
         <Button x:Name="button_setLocalDirectory" Content="Find Folder" HorizontalAlignment="Left" Height="24" Margin="219,235,0,0" VerticalAlignment="Top" Width="79" Click="button_setLocalDirectory_Click"/>
         <Label x:Name="label_localSelectedPath" Content="" HorizontalAlignment="Left" Margin="303,232,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.006,-0.217" Width="321"/>
+
+        <Button x:Name="button_CreateProject" Content="Create Project" HorizontalAlignment="Left" Height="48" Margin="417,280,0,0" VerticalAlignment="Top" Width="96" Click="button_CreateProject_Click"/>
+        <Button x:Name="button_testCreateDirectory" Content="Test Directory" HorizontalAlignment="Left" Height="33" Margin="261,312,0,0" VerticalAlignment="Top" Width="88" Click="button_testCreateDirectory_Click"/>
 
     </Grid>
 </Window>

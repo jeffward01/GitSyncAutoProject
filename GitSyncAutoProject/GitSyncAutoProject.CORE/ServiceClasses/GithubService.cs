@@ -28,11 +28,10 @@ namespace GitSyncAutoProject.CORE.ServiceClasses
         {
             string GithubClientID = "0968687a1c7f3d919fa3";
             string GithubClientSecret = "f5cf634e8f009052815a37baf5b86871a0f5554e";
-            var client = new GitHubClient(new ProductHeaderValue("GitSyncAutoProject"));
+            var client = new GitHubClient(new ProductHeaderValue("GitSyncAutoProject"), new Uri("https://github.com"));
 
             // NOTE: user must be navigated to this URL
-            //  var oauthLoginUrl = client.Oauth.GetGitHubLoginUrl(request);
-
+          
         }
 
         public static UserInformation GetGithubUser(string username)
@@ -60,7 +59,7 @@ namespace GitSyncAutoProject.CORE.ServiceClasses
             }
             catch (Exception)
             {
-                MessageBox.Show("SUser could not be found.  Please check the username and try again.");
+                MessageBox.Show("User could not be found.  Please check the username and try again.");
                 return null;
             }
         } //End Get User Info Method
