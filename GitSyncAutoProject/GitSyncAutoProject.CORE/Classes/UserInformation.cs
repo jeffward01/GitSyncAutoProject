@@ -16,10 +16,17 @@ namespace GitSyncAutoProject.CORE
         //Properties
         public string login { get; set; }
         public string name { get; set; }
-        public string URL { get; set; }
-        public string Repositories_URL { get; set; }
-        public string Followers { get; set; }
-        public string Following { get; set; }
+        public decimal id { get; set; }
+        public string html_url { get; set; }
+        public string avatar_url { get; set; }
+        public string repos_url { get; set; }
+        public string followers_url { get; set; }
+        public string followers { get; set; }
+        public string following { get; set; }
+        public string location { get; set; }
         public string public_repos { get; set; }
+        public DateTime created_at { get; set; }
+
+
     }
 }
