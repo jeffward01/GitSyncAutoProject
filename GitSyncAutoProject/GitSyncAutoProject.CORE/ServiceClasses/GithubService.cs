@@ -55,7 +55,6 @@ namespace GitSyncAutoProject.CORE.ServiceClasses
                     //Convert JSON to user-able variables
                     myInfo = JsonConvert.DeserializeObject<UserInformation>(json);
                     
-
                     return myInfo;
                 }
             }

@@ -125,6 +125,8 @@ namespace GitSyncAutoProject.CORE
             L_Login.Visibility = Visibility.Visible;
             L_following.Visibility = Visibility.Visible;
             L_locatoon.Visibility = Visibility.Visible;
+            button_newProject.IsEnabled = true;
+
 
         }
 
@@ -135,21 +137,59 @@ namespace GitSyncAutoProject.CORE
             L_Login.Visibility = Visibility.Hidden;
             L_following.Visibility = Visibility.Hidden;
             L_locatoon.Visibility = Visibility.Hidden;
+            button_newProject.IsEnabled = false;
+            HideProjectLabels();
+        }
+        public void HideProjectLabels()
+        {
+            L_Step1.Visibility = Visibility.Hidden;
+            L_Step2.Visibility = Visibility.Hidden;
+            L_Step3.Visibility = Visibility.Hidden;
+            L_Step4.Visibility = Visibility.Hidden;
+            L_projectType.Visibility = Visibility.Hidden;
+            radioButton_AngularWebProject.Visibility = Visibility.Hidden;
+            radioButton_BasicWebProject.Visibility = Visibility.Hidden;
+            L_RepoName.Visibility = Visibility.Hidden;
+            textBox_RepoDescription.Visibility = Visibility.Hidden;
+            L_RepoLocation.Visibility = Visibility.Hidden;
+            L_LocalDirectioryName.Visibility = Visibility.Hidden;
+            textBox_LocalDirectoryName.Visibility = Visibility.Hidden;
+           textBox_RepoName.Visibility = Visibility.Hidden;
+            L_RepoDescription.Visibility = Visibility.Hidden;
+            button_newProject.Visibility = Visibility.Visible;
+            button_hideProject.Visibility = Visibility.Hidden;
+        }
+
+    public void ShowProjectLabels()
+        {
+            L_Step1.Visibility = Visibility.Visible;
+            L_Step2.Visibility = Visibility.Visible;
+            L_Step3.Visibility = Visibility.Visible;
+            L_Step4.Visibility = Visibility.Visible;
+            L_projectType.Visibility = Visibility.Visible;
+            radioButton_AngularWebProject.Visibility = Visibility.Visible;
+            radioButton_BasicWebProject.Visibility = Visibility.Visible;
+            textBox_RepoDescription.Visibility = Visibility.Visible;
+            L_RepoLocation.Visibility = Visibility.Visible;
+            L_LocalDirectioryName.Visibility = Visibility.Visible;
+            textBox_LocalDirectoryName.Visibility = Visibility.Visible;
+            textBox_RepoName.Visibility = Visibility.Visible;
+            L_RepoDescription.Visibility = Visibility.Visible;
+            L_RepoName.Visibility = Visibility.Visible;
+            button_newProject.Visibility = Visibility.Hidden;
+            button_hideProject.Visibility = Visibility.Visible;
         }
 
         //Disconnect Button
         private void button_disconnect_Click(object sender, RoutedEventArgs e)
         {
 
-            //Get Image
-        
-
             setConnectionStatusDISCONNECT();
             HideLabels();
             userInfo = null;
             label_Followers.Content = "";
             image_profilePic.Visibility = Visibility.Hidden;
-                label_login.Content = "";
+            label_login.Content = "";
             label_location.Content = "";
             label_following.Content = "";
             textBox_username.Text = "Github Username";
@@ -159,6 +199,16 @@ namespace GitSyncAutoProject.CORE
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
+        }
+
+        private void button_newProject_Click(object sender, RoutedEventArgs e)
+        {
+            ShowProjectLabels();
+        }
+
+        private void button_hideProject_Click(object sender, RoutedEventArgs e)
+        {
+            HideProjectLabels();
         }
     }
 }
