@@ -104,6 +104,7 @@
     <Compile Include="Classes\CommitInformation.cs" />
     <Compile Include="Classes\GithubClasses.cs" />
     <Compile Include="Classes\RepositoryInformation.cs" />
+    <Compile Include="ServiceClasses\AngularWebProject\AngularFileService.cs" />
     <Compile Include="ServiceClasses\BasicWebProject\BWPFileService.cs" />
     <Compile Include="ServiceClasses\GithubService.cs" />
     <Compile Include="ServiceClasses\GithubServiceProvider.cs" />
