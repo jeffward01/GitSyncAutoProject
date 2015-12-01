@@ -20,6 +20,7 @@ using CSharp.GitHub;
 using System.IO;
 using GitSyncAutoProject.CORE.ServiceClasses.BasicWebProject;
 using GitSyncAutoProject.CORE.ServiceClasses.AngularWebProject;
+using System.Diagnostics;
 
 namespace GitSyncAutoProject.CORE
 {
@@ -332,8 +333,28 @@ namespace GitSyncAutoProject.CORE
             {
                 CreateAngularWebDirectories();
                 CreateFilesForAngularWebProject();
+                RunGitCommands(){ }
             }
          
+        }
+
+        //Run Git Terminal Commnds
+        private void RunGitCommands()
+        {
+            ProcessStartInfo psi = new ProcessStartInfo("git", "init");
+            psi.WorkingDirectory = ProjectTopLevelFolder;
+
+            Process p = Process.Start(psi);
+
+            ProcessStartInfo psi1 = new ProcessStartInfo("git", "add .");
+            psi1.WorkingDirectory = ProjectTopLevelFolder;
+
+            Process p2 = Process.Start(psi1);
+
+            ProcessStartInfo psi2 = new ProcessStartInfo("git", "commit -m \"Created by Github Creator\"");
+            psi1.WorkingDirectory = ProjectTopLevelFolder;
+
+            Process p3 = Process.Start(psi2);
         }
 
 
@@ -388,6 +409,21 @@ namespace GitSyncAutoProject.CORE
             string jsFolderName = "js";
             Project_js_DirectoryPath = System.IO.Path.Combine(pathtoProjectDirecory, jsFolderName);
             System.IO.Directory.CreateDirectory(Project_js_DirectoryPath);
+
+            ProcessStartInfo psi = new ProcessStartInfo("git", "init");
+            psi.WorkingDirectory = pathtoProjectDirecory;
+
+            Process p = Process.Start(psi);
+
+            ProcessStartInfo psi1 = new ProcessStartInfo("git", "add .");
+            psi1.WorkingDirectory = pathtoProjectDirecory;
+
+            Process p2 = Process.Start(psi1);
+
+            ProcessStartInfo psi2 = new ProcessStartInfo("git", "commit -m \"Created by Github Creator\"");
+            psi1.WorkingDirectory = pathtoProjectDirecory;
+
+            Process p2 = Process.Start(psi1);
 
         }
 
